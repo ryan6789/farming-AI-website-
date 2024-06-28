@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const apiUrl = 'https://api.openai.com/v1/engines/davinci/completions';
-    const apiKey = 'sk-proj-tRryPT6jw1nHUqib3fSRT3BlbkFJ6zgCoEm9uWs2Hf312fbi';
+    const apiKey = 'sk-proj-H5267eV52TASFUCzT55DT3BlbkFJAZDdv2XBXlbZxMWSMnsX';
 
     async function fetchData(prompt) {
         try {
@@ -16,14 +16,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     max_tokens: 150
                 })
             });
+
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
             }
+
             const data = await response.json();
-            return data.choices[0].text.trim();
+            const responseData = data.choices && data.choices.length > 0 ? data.choices[0].text.trim() : 'No data found';
+
+            return responseData;
         } catch (error) {
             console.error('Error fetching data:', error);
-            return 'Failed to fetch data. Please try again later.';
+            return 'Failed to fetch data. Please check console for details.';
         }
     }
 
