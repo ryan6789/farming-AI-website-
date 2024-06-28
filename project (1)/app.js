@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return responseData;
         } catch (error) {
             console.error('Error fetching data:', error);
-            return 'Failed to fetch data. Please check console for details.';
+            throw new Error('Failed to fetch data. Please check console for details.');
         }
     }
 
